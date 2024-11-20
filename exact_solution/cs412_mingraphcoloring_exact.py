@@ -21,30 +21,78 @@ def main():
     for _ in range(num_edges):
         parent, child = input().split()
         if parent not in graph:
-            graph[parent] = (set(), -1)
-        graph[parent][0].add(child)  # add tyhe verticies
+            graph[parent] = [set(), -1]  # each verticies have an initial -1 color
+        if child not in graph:
+            graph[child] = [set(), -1]  # each verticies have an initial -1 color
 
-    for index, parent in enumerate(graph):
-        used_colors = set()
+        graph[child][0].add(parent)  # add the verticies
 
-        # Check neighbors and mark their colors as used
-        for index, child in enumerate(graph):
-            if colors[index] != -1:
-                used_colors.add(colors[index])
+        graph[parent][0].add(child)  # add the verticies
 
-        # Find the smallest available color
-        color = 0
-        while True:
-            if color not in used_colors:
-                colors[index] = color
-                break
-            color += 1
+    min_cols = 2
+    marked = set()
 
-    # Find the maximum color used (chromatic number)
-    chromatic_number = max(colors) + 1
-    print(chromatic_number)
-    for index, item in enumerate(graph):
-        print(f"{item} {colors[index]}")
+    def determine_color_reccur(graph):
+
+        nonlocal min_cols, marked
+
+        if len(marked) == len(graph):
+            return True
+
+        for node in graph:
+            if node not in marked:
+                for color in range(min_cols):
+                    if can_use(color, node, graph):
+                        graph[node][1] = color
+                        marked.add(node)
+
+                        valid = determine_color_reccur(graph)
+
+                        if valid:
+                            return True
+
+                        marked.remove(node)
+                        graph[node][1] = -1
+                        continue
+                return False
+        return False
+
+    while True:
+        if not determine_color_reccur(graph):
+            min_cols += 1
+        else:
+            break
+
+    print(min_cols)
+
+    for key in graph:
+        print(f"{key} {graph[key][1]}")
+
+    if solver(graph):
+        print("This is solved correctly")
+    else:
+        print("This is incorrect")
+
+
+def can_use(color, node, graph):
+
+    for neighbor in graph[node][0]:
+        if color == graph[neighbor][1]:
+            return False
+
+    return True
+
+
+def solver(graph):
+    for parent in graph:
+
+        children, parent_color = graph[parent]
+
+        for child in children:
+            child_color = graph[child][1]
+            if parent_color == child_color:
+                return False
+    return True
 
 
 if __name__ == "__main__":
