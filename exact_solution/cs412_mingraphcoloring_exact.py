@@ -8,7 +8,7 @@
            Comments here on your code and submission.
 """
 
-import itertools
+import pickle
 
 
 # All modules for CS 412 must include a main method that allows it
@@ -65,13 +65,11 @@ def main():
 
     print(min_cols)
 
+    with open("graph_output", "wb") as file:
+        pickle.dump(graph, file)
+
     for key in graph:
         print(f"{key} {graph[key][1]}")
-
-    if solver(graph):
-        print("This is solved correctly")
-    else:
-        print("This is incorrect")
 
 
 def can_use(color, node, graph):
@@ -80,18 +78,6 @@ def can_use(color, node, graph):
         if color == graph[neighbor][1]:
             return False
 
-    return True
-
-
-def solver(graph):
-    for parent in graph:
-
-        children, parent_color = graph[parent]
-
-        for child in children:
-            child_color = graph[child][1]
-            if parent_color == child_color:
-                return False
     return True
 
 
