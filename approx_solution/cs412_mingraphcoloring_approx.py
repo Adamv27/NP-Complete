@@ -6,7 +6,6 @@ name: Adam Vinch
 
 from collections import defaultdict
 from queue import PriorityQueue
-import random
 
 
 def assign_color(graph, v, colors):
