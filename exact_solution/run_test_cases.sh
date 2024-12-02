@@ -31,12 +31,9 @@ do
 
 
     answer= python3 ../check_output.py
-    if [ "$(head -n 2 testExpected.txt)" = "$(head -n 2 testOutput.txt)" ]
-    then
-        echo -e "\t${test}\t${GREEN}passed\t${BLUE}${runtime}s${NC}"
-    else
-        echo -e "\t${test}\t${RED}failed\t${BLUE}${runtime}s${NC}"
-    fi
+
+    echo -e "\t${test}\t${RED}failed\t${BLUE}${runtime}s${NC}"
+
 
     cd ../
 done
