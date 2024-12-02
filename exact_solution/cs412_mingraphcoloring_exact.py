@@ -8,8 +8,6 @@
            Comments here on your code and submission.
 """
 
-import pickle
-
 
 # All modules for CS 412 must include a main method that allows it
 # to imported and invoked from other python scripts
@@ -58,15 +56,10 @@ def main():
         return False
 
     while True:
-        if not determine_color_reccur(graph):
+        if not determine_color_reccur(graph) or min_cols != len(graph):
             min_cols += 1
         else:
             break
-
-    print(min_cols)
-
-    with open("graph_output", "wb") as file:
-        pickle.dump(graph, file)
 
     for key in graph:
         print(f"{key} {graph[key][1]}")
