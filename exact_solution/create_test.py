@@ -1,11 +1,13 @@
 with open("testInput.txt", "w") as file:
     # 500 verts
 
-    file.write("249500\n")
+    num_verts = 100
 
-    for i in range(500):
+    file.write(f"{num_verts * (num_verts - 1)}\n")
 
-        for j in range(500):
+    for i in range(num_verts):
+
+        for j in range(num_verts):
 
             if i != j:
                 file.write(f"{i} {j}\n")
