@@ -56,10 +56,12 @@ def main():
         return False
 
     while True:
-        if not determine_color_reccur(graph) or min_cols != len(graph):
+        if not determine_color_reccur(graph):
             min_cols += 1
         else:
             break
+
+    print(min_cols)
 
     for key in graph:
         print(f"{key} {graph[key][1]}")
