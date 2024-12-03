@@ -35,7 +35,7 @@ def color_highest_degree(graph):
         color = assign_color(graph, v, colors)
         colors[v] = color
 
-    return set(colors.values()) 
+    return colors 
 
 
 def build_graph():
@@ -55,4 +55,6 @@ def build_graph():
 if __name__ == "__main__":
     graph = build_graph()
     min_colors = color_highest_degree(graph)
-    print(len(min_colors))
+    print(len(set(min_colors.values())))
+    for key in min_colors:
+        print(f'{key} {min_colors[key]}')
