@@ -21,25 +21,6 @@ def assign_color(graph, v, colors):
     return color
 
 
-def color_lowest_degree(graph):
-    colors = {}
-
-    pq = PriorityQueue() 
-    for v in graph:
-        degree = len(graph[v])
-        pq.put((-degree, v))
-    
-    while not pq.empty():
-        _, v = pq.get()
-
-        color = assign_color(graph, v, colors)
-        print(f'assigning vertex: {v} color: {color}')
-        colors[v] = color
-
-    
-    return set(colors.values()) 
-
-
 def color_highest_degree(graph):
     colors = {}
 
@@ -52,10 +33,8 @@ def color_highest_degree(graph):
         _, v = pq.get()
 
         color = assign_color(graph, v, colors)
-        print(f'assigning vertex: {v} color: {color}')
         colors[v] = color
 
-    
     return set(colors.values()) 
 
 
@@ -75,6 +54,5 @@ def build_graph():
 
 if __name__ == "__main__":
     graph = build_graph()
-    print(graph)
     min_colors = color_highest_degree(graph)
-    print(min_colors)
+    print(len(min_colors))

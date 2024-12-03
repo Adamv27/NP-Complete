@@ -11,8 +11,8 @@ NC="\033[0m" # No Color
 BLUE="\033[0;34m"
 UL="\e[430m"
 
-echo "${BOLD}Test cases:"
-echo "\t${BOLD}test\tresult\truntime${NC}"
+echo -e "${BOLD}Test cases:"
+echo -e "\t${BOLD}test\tresult\truntime${NC}"
 
 ## 
 

@@ -1,7 +1,10 @@
-with open("testInput.txt", "w") as file:
+with open(
+    r"D:\Github_Projects\NP-Complete\exact_solution\test_cases\test20mins\testInput.txt",
+    "w",
+) as file:
     # 500 verts
 
-    num_verts = 10
+    num_verts = 11
 
     file.write(f"{num_verts * (num_verts - 1)}\n")
 
