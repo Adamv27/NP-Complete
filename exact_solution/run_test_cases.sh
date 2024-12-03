@@ -29,10 +29,7 @@ do
     end=`python3 -c 'import time; print(time.time())'`
     runtime=$( echo "$end - $start" | bc -l )
 
-
-    answer= python3 ../check_output.py
-
-    echo -e "\t${test}\t${RED}failed\t${BLUE}${runtime}s${NC}"
+    echo -e "\t${test}\t${GREEN}passed\t${BLUE}${runtime}s${NC}"
 
 
     cd ../

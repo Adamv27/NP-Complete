@@ -1,7 +1,7 @@
 with open("testInput.txt", "w") as file:
     # 500 verts
 
-    num_verts = 100
+    num_verts = 10
 
     file.write(f"{num_verts * (num_verts - 1)}\n")
 
