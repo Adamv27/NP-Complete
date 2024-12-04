@@ -16,7 +16,7 @@ echo -e "\t${BOLD}test\tresult\truntime${NC}"
 
 ## 
 
-PROG_TO_TEST=cs412_mingraphcoloring_exact.py
+PROG_TO_TEST=cs412_mingraphcolor_exact.py
 
 cd test_cases
 
@@ -25,7 +25,7 @@ do
     cd $test 
 
     start=`python3 -c 'import time; print(time.time())'`
-    python3 ../../${PROG_TO_TEST} < testInput.txt
+    python3 ../../${PROG_TO_TEST} < testInput.txt > testOutput.txt
     end=`python3 -c 'import time; print(time.time())'`
     runtime=$( echo "$end - $start" | bc -l )
 
