@@ -20,14 +20,12 @@ def greedyColoring(adj, V):
         for i in adj[u]:
             if (result[i] != -1):
                 available[result[i]] = True
-
         color = 0
         while color < V:
             if (available[color] == False):
                 break
             color += 1
         result[u] = color
-
         for i in adj[u]:
             if (result[i] != -1):
                 available[result[i]] = False
@@ -38,14 +36,14 @@ def greedyColoring(adj, V):
         print(f"{u} {result[u]}")
 
 def main():
-    vertex, e = map(int, input().split())
-    adj = [[] for i in range(vertex)]
-    for i in range(e):
-        u, v = map(int, input().split())
-        adj[u].append(v)
+    V = int(input())
+    adj = [[] for _ in range(V)]
+    for _ in range(V):
+        v, u = map(int, input().split())
         adj[v].append(u)
+        adj[u].append(v)
         
-    greedyColoring(adj, vertex)
+    greedyColoring(adj, V)
 
 if __name__ == "__main__":
     main()
