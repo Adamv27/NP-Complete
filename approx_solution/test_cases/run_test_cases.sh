@@ -12,9 +12,7 @@ echo -e "\t${BOLD}test\tresult\truntime${NC}"
 
 ## 
 
-PROG_TO_TEST=cs412_mingraphcoloring_approx.py
-
-cd test_cases
+PROG_TO_TEST=cs412_mingraphcolor_approx.py
 
 for test in test*
 do

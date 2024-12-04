@@ -20,6 +20,8 @@ The first line represents the number of edges ```m```. The following ```m``` lin
 To run the test cases run the provided bash script
 
 ```
+cd test_cases
+
 chmod +x run_test_cases.sh
 
 ./run_test_cases
