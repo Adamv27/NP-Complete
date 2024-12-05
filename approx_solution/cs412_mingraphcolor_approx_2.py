@@ -18,16 +18,16 @@ def greedyColoring(adj, V):
     available = [False] * V
     for u in range(1, V):
         for i in adj[u]:
-            if (result[i] != -1):
+            if result[i] != -1:
                 available[result[i]] = True
         color = 0
         while color < V:
-            if (available[color] == False):
+            if available[color] == False:
                 break
             color += 1
         result[u] = color
         for i in adj[u]:
-            if (result[i] != -1):
+            if result[i] != -1:
                 available[result[i]] = False
                 
     num_colors = max(result) + 1
