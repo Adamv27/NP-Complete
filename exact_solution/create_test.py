@@ -1,16 +1,20 @@
-with open(
-    r"D:\Github_Projects\NP-Complete\exact_solution\test_cases\test20mins\testInput.txt",
-    "w",
-) as file:
-    # 500 verts
+import os
 
-    num_verts = 11
+for i in range(6, 15):
+    os.mkdir(f".\\test_cases\\test{i}complete")
+    with open(
+        f".\\test_cases\\test{i}complete\\testInput.txt",
+        "w",
+    ) as file:
+        # 500 verts
 
-    file.write(f"{num_verts * (num_verts - 1)}\n")
+        num_verts = i
 
-    for i in range(num_verts):
+        file.write(f"{num_verts * (num_verts - 1)}\n")
 
-        for j in range(num_verts):
+        for i in range(num_verts):
 
-            if i != j:
-                file.write(f"{i} {j}\n")
+            for j in range(num_verts):
+
+                if i != j:
+                    file.write(f"{i} {j}\n")

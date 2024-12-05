@@ -4,6 +4,8 @@
 # color coding some output.  Code modeled after code
 # from Martin Nester
 
+sed -i 's/\r$//' ./run_test_cases.sh
+
 RED="\033[0;31m"
 GREEN="\033[0;32m"
 BOLD="\033[1m"
@@ -20,7 +22,7 @@ PROG_TO_TEST=cs412_mingraphcolor_exact.py
 
 cd test_cases
 
-for test in test*
+for test in $(ls -d test* | sort -V)
 do
     cd $test 
 

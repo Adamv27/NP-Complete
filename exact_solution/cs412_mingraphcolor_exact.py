@@ -34,31 +34,40 @@ def main():
 
         nonlocal min_cols, marked
 
+        # if we have reached marked all edges that means we have covered all edges and therefore we are done
         if len(marked) == len(graph):
             return True
 
+        # Go through every node in the graph as long as it hasnt been marked and attempt to assign it a color
         for node in graph:
             if node not in marked:
+
+                # Try every color possible for the node we are currently on
                 for color in range(min_cols):
+
+                    # determine if we can use the node and if we can apply that color to the curr node
                     if can_use(color, node, graph):
                         graph[node][1] = color
                         marked.add(node)
 
                         valid = determine_color_reccur(graph)
 
+                        # if we found a valid coloring get out
                         if valid:
                             return True
 
+                        # otherwise remove the curr node from marked and set its color to -1 to try and color it again
                         marked.remove(node)
                         graph[node][1] = -1
                         continue
                 return False
         return False
 
-    while True:
-        if not determine_color_reccur(graph):
-            min_cols += 1
-        else:
+    for color in range(
+        2, len(graph) + 1
+    ):  # start at two colors and work up to the worst case of e colors
+        min_cols = color
+        if determine_color_reccur(graph):
             break
 
     print(min_cols)
@@ -66,15 +75,17 @@ def main():
     for key in graph:
         print(f"{key} {graph[key][1]}")
 
-    for parent in graph:
+    # This is the code for the verifier
 
-        children, parent_color = graph[parent]
+    # for parent in graph:
 
-        for child in children:
-            child_color = graph[child][1]
-            if parent_color == child_color:
-                print("false")
-    print("true")
+    #     children, parent_color = graph[parent]
+
+    #     for child in children:
+    #         child_color = graph[child][1]
+    #         if parent_color == child_color:
+    #             print("false")
+    # print("true")
 
 
 def can_use(color, node, graph):
