@@ -41,13 +41,8 @@ def main():
         # Go through every node in the graph as long as it hasnt been marked and attempt to assign it a color
         for node in graph:
             if node not in marked:
-
-                neighbor_colors = set()
-                for neighbor in graph[node][0]:
-                    neighbor_colors.add(graph[neighbor][1])
-
                 for color in range(min_cols):
-                    if color not in neighbor_colors:
+                    if can_use(color, node, graph):
                         graph[node][1] = color
                         marked.add(node)
 
@@ -87,6 +82,12 @@ def main():
     #         if parent_color == child_color:
     #             print("false")
     # print("true")
+
+def can_use(color, node, graph):
+    for neighbor in graph[node][0]:
+        if color == graph[neighbor][1]:
+            return False
+    return True
 
 
 if __name__ == "__main__":
